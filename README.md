@@ -4,6 +4,7 @@ The overall purpose of the study is to provide a numerical <br />
 score to a given transcript of a speech, interview, debate, <br />
 and/or hearing based on how factual its content is. The specific <br />
 objectives of the study are the following: <br />
+<br />
 • to collect news from reliable and satiric websites using <br />
 a web scraper; <br />
 • to collect transcripts of speeches, interviews, debates, <br />
@@ -22,7 +23,7 @@ using Triple Extraction Approach. <br />
 <br />
 <br />
 <br />
-Link used for the test data:
+Link used for the test data:  <br />
 facts: https://www.thefactsite.com/2011/07/top-100-random-funny-facts.html <br />
 myths: http://www.businessinsider.com/worst-science-health-myths-2016-1/ 
 
