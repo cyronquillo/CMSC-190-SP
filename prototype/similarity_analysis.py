@@ -40,9 +40,9 @@ class SemanticSimilarityAnalysis():
 			return 0  
 		cosine_similarity = 1-spatial.distance.cosine(inp_vect, data_vect)
 		
-		print("input vector: ", inp_vect)
-		print("data vector: ", data_vect)
-		print("cosine similarity: ",  cosine_similarity)
+		#print("input vector: ", inp_vect)
+		#print("data vector: ", data_vect)
+		#print("cosine similarity: ",  cosine_similarity)
 		return cosine_similarity
 	def get_trunk_extras(self, words):
 		trunk_list = []
@@ -67,7 +67,7 @@ class SemanticSimilarityAnalysis():
 		data_verb = self.get_trunk_extras(data['verb'])
 		data_object = self.get_trunk_extras(data['object'])
 		# subject
-		print("SUBJECT", inp_subject, " / ",data_subject)
+		#print("SUBJECT", inp_subject, " / ",data_subject)
 		if len(inp_subject['trunk']) != 0:
 			if len(data_subject['trunk']) != 0:
 				subject_similarity = self.get_semantic_similarity(inp_subject['trunk'], data_subject['trunk']) 
@@ -80,7 +80,7 @@ class SemanticSimilarityAnalysis():
 				subject_similarity = self.get_semantic_similarity(inp_subject['extra'], data_subject['extra']) 
 
 		#verb
-		print("VERB", inp_verb, " / ",data_verb)
+		#print("VERB", inp_verb, " / ",data_verb)
 
 		if len(inp_verb['trunk']) != 0:
 			if len(data_verb['trunk']) != 0:
@@ -94,7 +94,7 @@ class SemanticSimilarityAnalysis():
 				verb_similarity = self.get_semantic_similarity(inp_verb['extra'], data_verb['extra']) 
 		
 		#object
-		print("OBJECT", inp_object, " / ",data_object)
+		#print("OBJECT", inp_object, " / ",data_object)
 
 		if len(inp_object['trunk']) != 0:
 			if len(data_object['trunk']) != 0:

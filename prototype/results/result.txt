@@ -1,0 +1,15 @@
+Sentence: Eating apples keeps the doctor away.
+classification: MYTH -0.98490017946
+In File: An apple a day keeps the doctor away.
+
+
+Sentence: In China, Facebook is banned.
+classification: FACT -0.3
+In File: Facebook, Skype and Twitter are all banned in China.
+
+
+Sentence: Worms consume their wastes.
+classification: FACT -0.994432989691
+In File: Worms eat their own poop.
+
+
