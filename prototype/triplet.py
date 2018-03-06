@@ -9,14 +9,12 @@ import math
 class TripletExtraction():    
     def getSubject(self, subjects):
         subject_tokens = []
-        # print("subjects:", subjects)
         for subject in subjects:
             if "PRP" in subject[1] or "NN" in subject[1]:
                 subject_tokens.append([subject[0].lower(), subject[1] , 1])
             
             else:
                 subject_tokens.append([subject[0].lower(), subject[1], 0])
-        # print("subject_tokens: ", subject_tokens)
         return subject_tokens
 
     def getObject(self, obj):
@@ -61,30 +59,21 @@ class TripletExtraction():
         misc = []
         object_flag = False
         vp_subtree = None
-
         for subtree in tree:
-            # print("subtree label: ",subtree.label)
-            if subtree.label == "S" or "NP" in subtree.label:
-                # print("sokpa")
+            if (subtree.label == "S" or "NP" in subtree.label) and len(subject) == 0:
                 subject = self.getSubject(subtree.tokens_and_tags())
 
             elif subtree.label == "VP":
-                # for subsubtree in subtree:
-                #     print(subsubtree.label)
-                #     if "VBG" in subsubtree.label:
-                #         print("wow")
-                #         break
-                # else: 
-                # print("pumunta dito")
                 vp_subtree = subtree
                 break
             else:
-                # print(subtree.label)
                 misc.append(subtree.tokens())
         if vp_subtree != None:
-            for subtree in vp_subtree.all_subtrees(): # constructs all the subtrees in the remaining words
+            # constructs all the subtrees in the remaining words
+            for subtree in vp_subtree.all_subtrees(): 
                 if not object_flag:
-                    if subtree.is_preterminal(): #checks if the node is a terminal node
+                    #checks if the node is a terminal node
+                    if subtree.is_preterminal(): 
                         verb.append([subtree.token.lower(),(subtree.tags())[0],0])
                         if "VB" in subtree.label and subtree.token.lower() not in stopwords.words('english'):
                             verb[len(verb)-1][2] = 1
@@ -98,5 +87,4 @@ class TripletExtraction():
         
         if not self.isActive(svo_inp):
             svo_inp['subject'], svo_inp['object'] = svo_inp['object'] , svo_inp['subject'] 
-        
         return svo_inp 
