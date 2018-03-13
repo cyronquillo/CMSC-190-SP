@@ -1,0 +1,9 @@
+nltk==3.2.5
+numpy==1.14.1
+bllipparser==2016.9.11
+scipy==1.0.0
+newspaper3k==0.2.6
+tensorflow-gpu==1.4.0
+scikit-learn==0.19.1 
+sklearn==0.0
+

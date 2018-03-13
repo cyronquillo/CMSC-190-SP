@@ -2,10 +2,12 @@ import numpy
 from scipy import spatial
 
 from nltk.corpus import wordnet as wn
-
+from nltk.corpus import stopwords
 
 class SemanticSimilarityAnalysis():
 
+	def is_stopword(self, word):
+		return word not in stopwords.words('english')
 
 	def preprocess(self, word):
 		'''
@@ -17,6 +19,8 @@ class SemanticSimilarityAnalysis():
 		return word.lower()
 
 	def get_wu_palmer_similarity(self, word1, word2):
+		if self.is_stopword(word1) or self.is_stopword(word2):
+			return 0
 		word1 = self.preprocess(word1)
 		word2 = self.preprocess(word2)
 
@@ -29,9 +33,9 @@ class SemanticSimilarityAnalysis():
 			'''
 				gets the synset of each word
 			'''
-			synset_word1 = wn.synsets(word1)[0]
+			synset_word1 = wn.synsets(word1)
 			synset_word1 = synset_word1.lowest_common_hypernyms(synset_word1, use_min_depth=True)
-			synset_word2 = wn.synsets(word2)[0]
+			synset_word2 = wn.synsets(word2)
 			synset_word2 = synset_word2.lowest_common_hypernyms(synset_word2, use_min_depth=True)
 
 			for syn1 in synset_word1:
@@ -52,6 +56,8 @@ class SemanticSimilarityAnalysis():
 		for word in wordset:
 			similarity = self.get_wu_palmer_similarity(element, word)
 			max_similarity = similarity if similarity > max_similarity else max_similarity
+			if max_similarity == 1:
+				break
 		return max_similarity
 
 	def construct_vector(self, words, union_set):
@@ -59,14 +65,17 @@ class SemanticSimilarityAnalysis():
 
 		vector = []
 		for elem in union_set:
-			vector.append(self.get_numerical_similarity(elem, words_setify))
+			sim_score = self.get_numerical_similarity(elem, words_setify)
+			vector.append(sim_score)
+			if sim_score == 1:
+				break
 		return vector
 
 	def get_semantic_similarity(self, inp_words, data_words):
 		'''
 			wu-palmer similarity
 		'''
-		union_set = set(inp_words).union(set(data_words))
+		# union_set = set(inp_words).union(set(data_words))
 		inp_vect = self.construct_vector(inp_words, data_words)
 		return max(inp_vect)
 
@@ -118,8 +127,9 @@ class SemanticSimilarityAnalysis():
 			elif len(data_subject['extra']) != 0:
 				subject_similarity = self.get_semantic_similarity(inp_subject['extra'], data_subject['extra']) 
 
-		if subject_similarity < 0.90 and subject_similarity != -1:
-			return 0
+		if subject_similarity < 0.90:
+				return 0
+
 
 		#verb
 		if len(inp_verb['trunk']) != 0:

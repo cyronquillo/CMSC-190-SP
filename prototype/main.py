@@ -16,7 +16,7 @@ def main():
 
     results = open('./results/result.txt', 'w')
 
-    t = int(input())
+    t = int(input("Enter number of sentences: "))
     for i in range(t):
         max_similarity = 0
         classification = -1  
@@ -28,7 +28,7 @@ def main():
         f_fact = open('./test-data/fact.txt', 'r')
         f_myth = open('./test-data/myth.txt', 'r')
 
-        inp = input()
+        inp = input("Enter a sentence: ")
 
         ''' 
             generates the tree and gets the SVO of the sentence
@@ -39,6 +39,7 @@ def main():
         '''
             comparison for f_myth and f_fact
         '''
+
         for line in f_myth:
             tree_data = Tree(rrp.simple_parse(line))
             svo_data = foo.getSVO(tree_data[0])

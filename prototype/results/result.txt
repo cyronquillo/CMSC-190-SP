@@ -1,2 +1,0 @@
-Sentence: This is a test sentence.
-classification: INSUFFICIENT DATA 
