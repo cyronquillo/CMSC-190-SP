@@ -1,107 +1,114 @@
-''' Logistic Regression with Eager API.
-A logistic regression learning algorithm example using TensorFlow's Eager API.
-This example is using the MNIST database of handwritten digits
-(http://yann.lecun.com/exdb/mnist/)
-Author: Aymeric Damien
-Project: https://github.com/aymericdamien/TensorFlow-Examples/
+
 '''
-from __future__ import absolute_import, division, print_function
+Logistic Regression: https://github.com/aymericdamien/TensorFlow-Examples/
+KFold Cross Validation: http: // scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html
+'''
 
+from __future__ import print_function
+import os
+import sys
 import tensorflow as tf
-import tensorflow.contrib.eager as tfe
+from sklearn.model_selection import train_test_split, KFold
+import numpy as np
 
-# Set Eager API
-tfe.enable_eager_execution()
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, dir_path + '/../../utils')
 
-# Import MNIST data
-from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
+from config import DataDetails
+from training import get_data_and_label, numpy_array
+
+dd = DataDetails()
+
+
+dataset, labels = get_data_and_label()
+labels = numpy_array(labels)
+dataset = numpy_array(dataset)
+
+def next_batch(n, data, labels):
+    '''
+    Return a total of n random samples and labels. 
+    '''
+    idx = np.arange(0, len(data))
+    np.random.shuffle(idx)
+    idx = idx[:n]
+    data_shuffle = [data[i] for i in idx]
+    labels_shuffle = [labels[i] for i in idx]
+
+    return np.asarray(data_shuffle), np.asarray(labels_shuffle)
 
 # Parameters
-learning_rate = 0.5
-batch_size = 128
-num_steps = 1000
-display_step = 100
+test_ratio = 0.2
+learning_rate = 0.01
+training_epochs = 60
+batch_size = 50
+display_step = 1
+fold = 5
+kf = KFold(n_splits = fold)
+# data_train, data_test, label_train, label_test = train_test_split(
+#     dataset, labels, test_size=test_ratio, random_state=42)
+    
+x = tf.placeholder(tf.float32, [None, dd.feature_size])
+y = tf.placeholder(tf.float32, [None, dd.classification])
 
-dataset = tf.data.Dataset.from_tensor_slices(
-    (mnist.train.images, mnist.train.labels)).batch(batch_size)
-dataset_iter = tfe.Iterator(dataset)
+# Set model weights
+W = tf.Variable(tf.zeros([dd.feature_size, dd.classification]))
+b = tf.Variable(tf.zeros([dd.classification]))
 
-# Variables
-W = tfe.Variable(tf.zeros([784, 10]), name='weights')
-b = tfe.Variable(tf.zeros([10]), name='bias')
+# Construct model
+pred = tf.nn.softmax(tf.matmul(x, W) + b)  # Softmax
+
+# Minimize error using cross entropy
+cost = tf.reduce_mean(-tf.reduce_sum(y*tf.log(pred), reduction_indices=1))
+# Gradient Descent
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+
+# Initialize the variables (i.e. assign their default value)
+init = tf.global_variables_initializer()
+
+# Start training
+with tf.Session()as sess:
+    # data_train, data_test, label_train, label_test = train_test_split(
+    #     dataset, labels, test_size=test_ratio, random_state=42)
+    # Run the initializer
+    sess.run(init)
+    
+    f_write = open('LR.txt', 'w')
+    f_write.write("KFold Cross Validation of Logistic Regression (k = " + str(fold) + ")\n")
+    accu_list = []
+    current_fold = 1
+    for train_index, test_index in kf.split(dataset):
+        print("Fold Count: ", current_fold)
+        current_fold += 1
+        data_train, data_test = dataset[train_index], dataset[test_index]
+        label_train, label_test =labels[train_index], labels[test_index]
+        # Training cycle
+        for epoch in range(training_epochs):
+            avg_cost = 0.0
+            total_batch = int(dd.dataset_size/batch_size)
+            # Loop over all batches
+            for i in range(total_batch):
+                batch_xs, batch_ys = next_batch(batch_size, data_train, label_train)
+                # Run optimization op (backprop) and cost op (to get loss value)
+                _, c = sess.run([optimizer, cost], feed_dict={x: batch_xs,
+                                                            y: batch_ys})
+                # Compute average loss
+                avg_cost += c / total_batch
+            # Display logs per epoch step
+            if (epoch+1) % display_step == 0:
+                print("Epoch:", '%04d' % (epoch+1),
+                    "cost=", "{:.9f}".format(avg_cost))
+
+        print("Optimization Finished!")
+
+        # Test model
+        correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
+        # Calculate accuracy
+        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+        accu_value = accuracy.eval({x: data_test, y: label_test})
+        accu_list.append(accu_value)
+        print("Accuracy:", accu_value)
+        f_write.write("Accuracy: " + str(accu_value) + "\n")
 
 
-# Logistic regression (Wx + b)
-def logistic_regression(inputs):
-    return tf.matmul(inputs, W) + b
-
-
-# Cross-Entropy loss function
-def loss_fn(inference_fn, inputs, labels):
-    # Using sparse_softmax cross entropy
-    return tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
-        logits=inference_fn(inputs), labels=labels))
-
-
-# Calculate accuracy
-def accuracy_fn(inference_fn, inputs, labels):
-    prediction = tf.nn.softmax(inference_fn(inputs))
-    correct_pred = tf.equal(tf.argmax(prediction, 1), labels)
-    return tf.reduce_mean(tf.cast(correct_pred, tf.float32))
-
-
-# SGD Optimizer
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
-# Compute gradients
-grad = tfe.implicit_gradients(loss_fn)
-
-# Training
-average_loss = 0.
-average_acc = 0.
-for step in range(num_steps):
-
-    # Iterate through the dataset
-    try:
-        d = dataset_iter.next()
-    except StopIteration:
-        # Refill queue
-        dataset_iter = tfe.Iterator(dataset)
-        d = dataset_iter.next()
-
-    # Images
-    x_batch = d[0]
-    # Labels
-    y_batch = tf.cast(d[1], dtype=tf.int64)
-
-    # Compute the batch loss
-    batch_loss = loss_fn(logistic_regression, x_batch, y_batch)
-    average_loss += batch_loss
-    # Compute the batch accuracy
-    batch_accuracy = accuracy_fn(logistic_regression, x_batch, y_batch)
-    average_acc += batch_accuracy
-
-    if step == 0:
-        # Display the initial cost, before optimizing
-        print("Initial loss= {:.9f}".format(average_loss))
-
-    # Update the variables following gradients info
-    optimizer.apply_gradients(grad(logistic_regression, x_batch, y_batch))
-
-    # Display info
-    if (step + 1) % display_step == 0 or step == 0:
-        if step > 0:
-            average_loss /= display_step
-            average_acc /= display_step
-        print("Step:", '%04d' % (step + 1), " loss=",
-              "{:.9f}".format(average_loss), " accuracy=",
-              "{:.4f}".format(average_acc))
-        average_loss = 0.
-        average_acc = 0.
-
-# Evaluate model on the test image set
-testX = mnist.test.images
-testY = mnist.test.labels
-
-test_acc = accuracy_fn(logistic_regression, testX, testY)
-print("Testset Accuracy: {:.4f}".format(test_acc))
+    f_write.write("Average Accuracy: " + str(sum(accu_list)/float(len(accu_list))))
+    f_write.close()
