@@ -1,0 +1,7 @@
+KFold Cross Validation of Logistic Regression (k = 5)
+Accuracy: 0.9254919
+Accuracy: 0.9447147
+Accuracy: 0.93233085
+Accuracy: 0.9327731
+Accuracy: 0.9444936
+Average Accuracy: 0.935960841178894
