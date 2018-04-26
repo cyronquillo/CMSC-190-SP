@@ -195,6 +195,7 @@ class DataDetails():
     ]
 
     feature_size = 63
+    classification = 2
     features = {
         'sentiment': 0,
         'word_count': 1,

@@ -28,24 +28,38 @@ def generate_target(delimiter, data_path, url):
     f_read.close()
     return scores
 
+def adjust_threshold(th, score_path, class_path):
+    scores = open(score_path, 'r')
+    new_class = open(class_path, 'w')
+    for score in scores:
+        if float(score) < th:
+            new_class.write('0\n')
+        else:
+            new_class.write('1\n')
+    new_class.close()
+    scores.close()
 
-threshold = 0.40
-# threshold = 0.50
-# threshold = 0.30
+
+def start():
+
+    scores = generate_target(delimiter, data_path, url)
+    f_write0 = open(target_output_class_path, 'w')
+    f_write1 = open(target_output_score_path, 'w')
+
+    for score in scores:
+        f_write1.write(str(score) + "\n")
+        
+        score_class = 0 if float(score) < threshold else 1
+        f_write0.write(str(score_class) + "\n")
+    f_write0.close()
+    f_write1.close()
+
 delimiter = '%20'
 url = 'http://idir-server2.uta.edu:80/factchecker/score_text/'
 data_path = '../data/debates/preprocessed.txt'
 target_output_score_path = '../data/debates/ground_sentence_score.txt'
 target_output_class_path = '../data/debates/ground_sentence_class.txt'
-
-scores = generate_target(delimiter, data_path, url)
-f_write0 = open(target_output_class_path, 'w')
-f_write1 = open(target_output_score_path, 'w')
-
-for score in scores:
-    f_write1.write(str(score) + "\n")
-    
-    score_class = 0 if float(score) < threshold else 1
-    f_write0.write(str(score_class) + "\n")
-f_write0.close()
-f_write1.close()
+# threshold = 0.40
+threshold = 0.50
+# threshold = 0.30
+adjust_threshold(threshold, target_output_score_path, target_output_class_path)

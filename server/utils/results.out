@@ -1,0 +1,466 @@
+Running Logistic Regression Classification: 
+Processing Fold: 1
+Epoch: 0500 cost= 0.272963017
+Epoch: 1000 cost= 0.226895779
+Epoch: 1500 cost= 0.204416513
+Epoch: 2000 cost= 0.190951958
+Epoch: 2500 cost= 0.182046458
+Epoch: 3000 cost= 0.175786972
+Epoch: 3500 cost= 0.171194941
+Epoch: 4000 cost= 0.167714834
+Epoch: 4500 cost= 0.165008441
+Epoch: 5000 cost= 0.162858754
+Epoch: 5500 cost= 0.161120743
+Epoch: 6000 cost= 0.159694269
+Epoch: 6500 cost= 0.158508256
+Epoch: 7000 cost= 0.157511085
+Epoch: 7500 cost= 0.156664133
+Epoch: 8000 cost= 0.155938685
+Epoch: 8500 cost= 0.155312240
+Epoch: 9000 cost= 0.154767662
+Epoch: 9500 cost= 0.154291078
+Epoch: 10000 cost= 0.153871953
+Optimization Finished!
+Accuracy: 0.92880833 
+
+Processing Fold: 2
+Epoch: 0500 cost= 0.275515288
+Epoch: 1000 cost= 0.230687752
+Epoch: 1500 cost= 0.208961442
+Epoch: 2000 cost= 0.195999488
+Epoch: 2500 cost= 0.187443271
+Epoch: 3000 cost= 0.181432679
+Epoch: 3500 cost= 0.177022830
+Epoch: 4000 cost= 0.173679531
+Epoch: 4500 cost= 0.171078786
+Epoch: 5000 cost= 0.169012666
+Epoch: 5500 cost= 0.167342305
+Epoch: 6000 cost= 0.165971488
+Epoch: 6500 cost= 0.164832175
+Epoch: 7000 cost= 0.163874447
+Epoch: 7500 cost= 0.163061678
+Epoch: 8000 cost= 0.162365854
+Epoch: 8500 cost= 0.161765516
+Epoch: 9000 cost= 0.161244050
+Epoch: 9500 cost= 0.160788238
+Epoch: 10000 cost= 0.160387665
+Optimization Finished!
+Accuracy: 0.946705 
+
+Processing Fold: 3
+Epoch: 0500 cost= 0.273384094
+Epoch: 1000 cost= 0.227169573
+Epoch: 1500 cost= 0.205076769
+Epoch: 2000 cost= 0.192015126
+Epoch: 2500 cost= 0.183447152
+Epoch: 3000 cost= 0.177455783
+Epoch: 3500 cost= 0.173074260
+Epoch: 4000 cost= 0.169759169
+Epoch: 4500 cost= 0.167182639
+Epoch: 5000 cost= 0.165135533
+Epoch: 5500 cost= 0.163478538
+Epoch: 6000 cost= 0.162116244
+Epoch: 6500 cost= 0.160980716
+Epoch: 7000 cost= 0.160023183
+Epoch: 7500 cost= 0.159207359
+Epoch: 8000 cost= 0.158505782
+Epoch: 8500 cost= 0.157897606
+Epoch: 9000 cost= 0.157366604
+Epoch: 9500 cost= 0.156899869
+Epoch: 10000 cost= 0.156487390
+Optimization Finished!
+Accuracy: 0.9343211 
+
+Processing Fold: 4
+Epoch: 0500 cost= 0.272702605
+Epoch: 1000 cost= 0.227107838
+Epoch: 1500 cost= 0.205027878
+Epoch: 2000 cost= 0.191845953
+Epoch: 2500 cost= 0.183145642
+Epoch: 3000 cost= 0.177039370
+Epoch: 3500 cost= 0.172565609
+Epoch: 4000 cost= 0.169179857
+Epoch: 4500 cost= 0.166550860
+Epoch: 5000 cost= 0.164466307
+Epoch: 5500 cost= 0.162784055
+Epoch: 6000 cost= 0.161406264
+Epoch: 6500 cost= 0.160263285
+Epoch: 7000 cost= 0.159304276
+Epoch: 7500 cost= 0.158491850
+Epoch: 8000 cost= 0.157797605
+Epoch: 8500 cost= 0.157199875
+Epoch: 9000 cost= 0.156681597
+Epoch: 9500 cost= 0.156229436
+Epoch: 10000 cost= 0.155832663
+Optimization Finished!
+Accuracy: 0.93144625 
+
+Processing Fold: 5
+Epoch: 0500 cost= 0.276475698
+Epoch: 1000 cost= 0.231001005
+Epoch: 1500 cost= 0.209008530
+Epoch: 2000 cost= 0.195898086
+Epoch: 2500 cost= 0.187268347
+Epoch: 3000 cost= 0.181230724
+Epoch: 3500 cost= 0.176820740
+Epoch: 4000 cost= 0.173492566
+Epoch: 4500 cost= 0.170914695
+Epoch: 5000 cost= 0.168874651
+Epoch: 5500 cost= 0.167231381
+Epoch: 6000 cost= 0.165887296
+Epoch: 6500 cost= 0.164773345
+Epoch: 7000 cost= 0.163839668
+Epoch: 7500 cost= 0.163049042
+Epoch: 8000 cost= 0.162373781
+Epoch: 8500 cost= 0.161792248
+Epoch: 9000 cost= 0.161288098
+Epoch: 9500 cost= 0.160848171
+Epoch: 10000 cost= 0.160462230
+Optimization Finished!
+Accuracy: 0.93940735 
+
+KFold Average Accuracy: 0.93613760471344
+Running Support Vector Machine Classification: 
+Processing Fold: 1
+Epoch: 500
+Loss = -494.8478
+Epoch: 1000
+Loss = -994.8589
+Epoch: 1500
+Loss = -1494.8702
+Epoch: 2000
+Loss = -1994.8818
+Epoch: 2500
+Loss = -2494.8933
+Epoch: 3000
+Loss = -2994.9043
+Epoch: 3500
+Loss = -3494.8596
+Epoch: 4000
+Loss = -3994.7761
+Epoch: 4500
+Loss = -4494.6924
+Epoch: 5000
+Loss = -4994.608
+Epoch: 5500
+Loss = -5494.5244
+Epoch: 6000
+Loss = -5994.4404
+Epoch: 6500
+Loss = -6494.3975
+Epoch: 7000
+Loss = -6994.499
+Epoch: 7500
+Loss = -7494.606
+Epoch: 8000
+Loss = -7994.713
+Epoch: 8500
+Loss = -8494.819
+Epoch: 9000
+Loss = -8994.927
+Epoch: 9500
+Loss = -9495.033
+Epoch: 10000
+Loss = -9995.139
+Accuracy: 0.986888888809416 
+
+Processing Fold: 2
+Epoch: 500
+Loss = -495.4221
+Epoch: 1000
+Loss = -995.4332
+Epoch: 1500
+Loss = -1495.4447
+Epoch: 2000
+Loss = -1995.456
+Epoch: 2500
+Loss = -2495.4675
+Epoch: 3000
+Loss = -2995.479
+Epoch: 3500
+Loss = -3495.434
+Epoch: 4000
+Loss = -3995.3503
+Epoch: 4500
+Loss = -4495.266
+Epoch: 5000
+Loss = -4995.1826
+Epoch: 5500
+Loss = -5495.0986
+Epoch: 6000
+Loss = -5995.0146
+Epoch: 6500
+Loss = -6494.9707
+Epoch: 7000
+Loss = -6995.0737
+Epoch: 7500
+Loss = -7495.1807
+Epoch: 8000
+Loss = -7995.287
+Epoch: 8500
+Loss = -8495.394
+Epoch: 9000
+Loss = -8995.501
+Epoch: 9500
+Loss = -9495.606
+Epoch: 10000
+Loss = -9995.714
+Accuracy: 1.0 
+
+Processing Fold: 3
+Epoch: 500
+Loss = -490.47424
+Epoch: 1000
+Loss = -990.4854
+Epoch: 1500
+Loss = -1490.4968
+Epoch: 2000
+Loss = -1990.5083
+Epoch: 2500
+Loss = -2490.5195
+Epoch: 3000
+Loss = -2990.5312
+Epoch: 3500
+Loss = -3490.4873
+Epoch: 4000
+Loss = -3990.403
+Epoch: 4500
+Loss = -4490.3193
+Epoch: 5000
+Loss = -4990.235
+Epoch: 5500
+Loss = -5490.1514
+Epoch: 6000
+Loss = -5990.0674
+Epoch: 6500
+Loss = -6490.0215
+Epoch: 7000
+Loss = -6990.125
+Epoch: 7500
+Loss = -7490.232
+Epoch: 8000
+Loss = -7990.3384
+Epoch: 8500
+Loss = -8490.445
+Epoch: 9000
+Loss = -8990.552
+Epoch: 9500
+Loss = -9490.659
+Epoch: 10000
+Loss = -9990.766
+Accuracy: 1.0 
+
+Processing Fold: 4
+Epoch: 500
+Loss = -499.5379
+Epoch: 1000
+Loss = -999.54913
+Epoch: 1500
+Loss = -1499.5605
+Epoch: 2000
+Loss = -1999.572
+Epoch: 2500
+Loss = -2499.5833
+Epoch: 3000
+Loss = -2999.5947
+Epoch: 3500
+Loss = -3499.549
+Epoch: 4000
+Loss = -3999.465
+Epoch: 4500
+Loss = -4499.3813
+Epoch: 5000
+Loss = -4999.297
+Epoch: 5500
+Loss = -5499.214
+Epoch: 6000
+Loss = -5999.1294
+Epoch: 6500
+Loss = -6499.0864
+Epoch: 7000
+Loss = -6999.1904
+Epoch: 7500
+Loss = -7499.2974
+Epoch: 8000
+Loss = -7999.404
+Epoch: 8500
+Loss = -8499.511
+Epoch: 9000
+Loss = -8999.617
+Epoch: 9500
+Loss = -9499.725
+Epoch: 10000
+Loss = -9999.831
+Accuracy: 0.9997777779897054 
+
+Processing Fold: 5
+Epoch: 500
+Loss = -508.28186
+Epoch: 1000
+Loss = -1008.2932
+Epoch: 1500
+Loss = -1508.3047
+Epoch: 2000
+Loss = -2008.3162
+Epoch: 2500
+Loss = -2508.3276
+Epoch: 3000
+Loss = -3008.3389
+Epoch: 3500
+Loss = -3508.2915
+Epoch: 4000
+Loss = -4008.2073
+Epoch: 4500
+Loss = -4508.1235
+Epoch: 5000
+Loss = -5008.04
+Epoch: 5500
+Loss = -5507.9556
+Epoch: 6000
+Loss = -6007.8716
+Epoch: 6500
+Loss = -6507.831
+Epoch: 7000
+Loss = -7007.9355
+Epoch: 7500
+Loss = -7508.043
+Epoch: 8000
+Loss = -8008.15
+Epoch: 8500
+Loss = -8508.257
+Epoch: 9000
+Loss = -9008.363
+Epoch: 9500
+Loss = -9508.47
+Epoch: 10000
+Loss = -10008.577
+Accuracy: 0.9786666666467985 
+
+KFold Average Accuracy: 0.993066666689184
+Running Multilayer Perceptron Classification: 
+Processing Fold: 1
+Step 1, Minibatch Loss= 1936360.0000, Training Accuracy= 0.780
+Step 500, Minibatch Loss= 3315.8044, Training Accuracy= 0.910
+Step 1000, Minibatch Loss= 1939.4883, Training Accuracy= 0.910
+Step 1500, Minibatch Loss= 1589.5066, Training Accuracy= 0.910
+Step 2000, Minibatch Loss= 1407.9393, Training Accuracy= 0.940
+Step 2500, Minibatch Loss= 818.9144, Training Accuracy= 0.920
+Step 3000, Minibatch Loss= 1755.0394, Training Accuracy= 0.900
+Step 3500, Minibatch Loss= 803.1426, Training Accuracy= 0.920
+Step 4000, Minibatch Loss= 379.3873, Training Accuracy= 0.920
+Step 4500, Minibatch Loss= 243.9374, Training Accuracy= 0.940
+Step 5000, Minibatch Loss= 162.9251, Training Accuracy= 0.920
+Step 5500, Minibatch Loss= 350.1211, Training Accuracy= 0.880
+Step 6000, Minibatch Loss= 476.4502, Training Accuracy= 0.880
+Step 6500, Minibatch Loss= 7140.6973, Training Accuracy= 0.910
+Step 7000, Minibatch Loss= 218.3913, Training Accuracy= 0.890
+Step 7500, Minibatch Loss= 389.6186, Training Accuracy= 0.870
+Step 8000, Minibatch Loss= 131.5341, Training Accuracy= 0.910
+Step 8500, Minibatch Loss= 40.0141, Training Accuracy= 0.980
+Step 9000, Minibatch Loss= 119.3084, Training Accuracy= 0.860
+Step 9500, Minibatch Loss= 147.9819, Training Accuracy= 0.880
+Step 10000, Minibatch Loss= 147.3904, Training Accuracy= 0.890
+Optimization Finished!
+Accuracy: 0.89962417 
+
+Processing Fold: 2
+Step 1, Minibatch Loss= 1724474.5000, Training Accuracy= 0.830
+Step 500, Minibatch Loss= 6630.2012, Training Accuracy= 0.870
+Step 1000, Minibatch Loss= 4310.7358, Training Accuracy= 0.890
+Step 1500, Minibatch Loss= 1846.4196, Training Accuracy= 0.880
+Step 2000, Minibatch Loss= 1772.6865, Training Accuracy= 0.930
+Step 2500, Minibatch Loss= 1310.0950, Training Accuracy= 0.890
+Step 3000, Minibatch Loss= 867.0693, Training Accuracy= 0.920
+Step 3500, Minibatch Loss= 574.4741, Training Accuracy= 0.960
+Step 4000, Minibatch Loss= 2390.9004, Training Accuracy= 0.930
+Step 4500, Minibatch Loss= 434.1273, Training Accuracy= 0.920
+Step 5000, Minibatch Loss= 459.5483, Training Accuracy= 0.940
+Step 5500, Minibatch Loss= 110.8266, Training Accuracy= 0.950
+Step 6000, Minibatch Loss= 29.5546, Training Accuracy= 0.970
+Step 6500, Minibatch Loss= 141.9081, Training Accuracy= 0.950
+Step 7000, Minibatch Loss= 44.1869, Training Accuracy= 0.930
+Step 7500, Minibatch Loss= 39.9376, Training Accuracy= 0.960
+Step 8000, Minibatch Loss= 281.6710, Training Accuracy= 0.920
+Step 8500, Minibatch Loss= 69.1934, Training Accuracy= 0.930
+Step 9000, Minibatch Loss= 123.5585, Training Accuracy= 0.930
+Step 9500, Minibatch Loss= 161.5269, Training Accuracy= 0.900
+Step 10000, Minibatch Loss= 154.5056, Training Accuracy= 0.940
+Optimization Finished!
+Accuracy: 0.9358691 
+
+Processing Fold: 3
+Step 1, Minibatch Loss= 8258474.0000, Training Accuracy= 0.090
+Step 500, Minibatch Loss= 3820.8215, Training Accuracy= 0.880
+Step 1000, Minibatch Loss= 2628.1655, Training Accuracy= 0.950
+Step 1500, Minibatch Loss= 1368.1150, Training Accuracy= 0.910
+Step 2000, Minibatch Loss= 952.0962, Training Accuracy= 0.930
+Step 2500, Minibatch Loss= 1876.3892, Training Accuracy= 0.930
+Step 3000, Minibatch Loss= 285.3044, Training Accuracy= 0.950
+Step 3500, Minibatch Loss= 2502.0662, Training Accuracy= 0.910
+Step 4000, Minibatch Loss= 1464.9308, Training Accuracy= 0.880
+Step 4500, Minibatch Loss= 2769.5537, Training Accuracy= 0.840
+Step 5000, Minibatch Loss= 372.2488, Training Accuracy= 0.860
+Step 5500, Minibatch Loss= 249.8641, Training Accuracy= 0.920
+Step 6000, Minibatch Loss= 217.6184, Training Accuracy= 0.880
+Step 6500, Minibatch Loss= 247.6761, Training Accuracy= 0.910
+Step 7000, Minibatch Loss= 607.2806, Training Accuracy= 0.920
+Step 7500, Minibatch Loss= 241.1016, Training Accuracy= 0.960
+Step 8000, Minibatch Loss= 69.9446, Training Accuracy= 0.960
+Step 8500, Minibatch Loss= 68.7945, Training Accuracy= 0.970
+Step 9000, Minibatch Loss= 43.4230, Training Accuracy= 0.970
+Step 9500, Minibatch Loss= 143.7139, Training Accuracy= 0.940
+Step 10000, Minibatch Loss= 121.5294, Training Accuracy= 0.930
+Optimization Finished!
+Accuracy: 0.92105263 
+
+Processing Fold: 4
+Step 1, Minibatch Loss= 6015612.0000, Training Accuracy= 0.160
+Step 500, Minibatch Loss= 2164.8877, Training Accuracy= 0.960
+Step 1000, Minibatch Loss= 556.4844, Training Accuracy= 0.950
+Step 1500, Minibatch Loss= 1028.0316, Training Accuracy= 0.930
+Step 2000, Minibatch Loss= 2719.3987, Training Accuracy= 0.890
+Step 2500, Minibatch Loss= 3009.6550, Training Accuracy= 0.850
+Step 3000, Minibatch Loss= 1575.8540, Training Accuracy= 0.910
+Step 3500, Minibatch Loss= 443.6054, Training Accuracy= 0.910
+Step 4000, Minibatch Loss= 189.1373, Training Accuracy= 0.930
+Step 4500, Minibatch Loss= 416.7438, Training Accuracy= 0.880
+Step 5000, Minibatch Loss= 591.2043, Training Accuracy= 0.880
+Step 5500, Minibatch Loss= 369.6895, Training Accuracy= 0.930
+Step 6000, Minibatch Loss= 728.7709, Training Accuracy= 0.930
+Step 6500, Minibatch Loss= 135.2324, Training Accuracy= 0.940
+Step 7000, Minibatch Loss= 1215.9924, Training Accuracy= 0.930
+Step 7500, Minibatch Loss= 193.9774, Training Accuracy= 0.930
+Step 8000, Minibatch Loss= 447.7893, Training Accuracy= 0.870
+Step 8500, Minibatch Loss= 161.1419, Training Accuracy= 0.910
+Step 9000, Minibatch Loss= 263.3641, Training Accuracy= 0.930
+Step 9500, Minibatch Loss= 300.3356, Training Accuracy= 0.900
+Step 10000, Minibatch Loss= 40.2349, Training Accuracy= 0.960
+Optimization Finished!
+Accuracy: 0.92503315 
+
+Processing Fold: 5
+Step 1, Minibatch Loss= 1971076.1250, Training Accuracy= 0.850
+Step 500, Minibatch Loss= 4370.0142, Training Accuracy= 0.880
+Step 1000, Minibatch Loss= 4061.9043, Training Accuracy= 0.920
+Step 1500, Minibatch Loss= 751.1562, Training Accuracy= 0.920
+Step 2000, Minibatch Loss= 4405.8750, Training Accuracy= 0.910
+Step 2500, Minibatch Loss= 2004.4858, Training Accuracy= 0.890
+Step 3000, Minibatch Loss= 1565.8510, Training Accuracy= 0.950
+Step 3500, Minibatch Loss= 604.9945, Training Accuracy= 0.900
+Step 4000, Minibatch Loss= 517.6727, Training Accuracy= 0.880
+Step 4500, Minibatch Loss= 368.5670, Training Accuracy= 0.930
+Step 5000, Minibatch Loss= 474.7812, Training Accuracy= 0.910
+Step 5500, Minibatch Loss= 236.4998, Training Accuracy= 0.910
+Step 6000, Minibatch Loss= 303.9975, Training Accuracy= 0.920
+Step 6500, Minibatch Loss= 66.1875, Training Accuracy= 0.960
+Step 7000, Minibatch Loss= 2510.2046, Training Accuracy= 0.780
+Step 7500, Minibatch Loss= 71.7708, Training Accuracy= 0.900
+Step 8000, Minibatch Loss= 384.6821, Training Accuracy= 0.870
+Step 8500, Minibatch Loss= 174.8401, Training Accuracy= 0.890
+Step 9000, Minibatch Loss= 153.2636, Training Accuracy= 0.900
+Step 9500, Minibatch Loss= 213.8068, Training Accuracy= 0.910
+Step 10000, Minibatch Loss= 241.6320, Training Accuracy= 0.920
+Optimization Finished!
+Accuracy: 0.9387439 
+
+KFold Average Accuracy: 0.9240645885467529
