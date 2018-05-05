@@ -26,7 +26,7 @@ dd = DataDetails()
 
 
 def support_vector_machine(dataset, labels, train_index, test_index,
-                           learning_rate=0.01, training_epochs=5, display_step=1, train_fold=4):
+                           learning_rate, training_epochs, display_step=1, train_fold=4):
 
     # modify labels
     print(labels)

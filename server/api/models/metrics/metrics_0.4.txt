@@ -1,0 +1,219 @@
+
+SVM:
+parameters:
+gamma=auto	epoch_size=100
+kfold train accuracy: 0.5204101237458535
+kfold test accuracy: 0.6876734500542365
+kfold precision score: 0.30419225970402375
+kfold recall score: 0.11477811446634809
+kfold f1 score: 0.1297334481519631
+gamma=auto	epoch_size=500
+kfold train accuracy: 0.47470187151938736
+kfold test accuracy: 0.5885678711481335
+kfold precision score: 0.20693673251827266
+kfold recall score: 0.22885060168968474
+kfold f1 score: 0.19592930649780066
+gamma=auto	epoch_size=1000
+kfold train accuracy: 0.6113170849748781
+kfold test accuracy: 0.5128062153797833
+kfold precision score: 0.25159191588700947
+kfold recall score: 0.6042167062021159
+kfold f1 score: 0.34993344665900583
+gamma=auto	epoch_size=2000
+kfold train accuracy: 0.8953164214904883
+kfold test accuracy: 0.7643640255129245
+kfold precision score: 0.47469962324531245
+kfold recall score: 0.8757457442060884
+kfold f1 score: 0.6129930219633568
+gamma=auto	epoch_size=5000
+kfold train accuracy: 0.9068484420574286
+kfold test accuracy: 0.8848789268433208
+kfold precision score: 0.7561031810365452
+kfold recall score: 0.6666122589447168
+kfold f1 score: 0.7080632409992672
+gamma=0.01	epoch_size=100
+kfold train accuracy: 0.493940382714794
+kfold test accuracy: 0.6036905479810646
+kfold precision score: 0.16167639967626957
+kfold recall score: 0.14043477177276756
+kfold f1 score: 0.1332851433103194
+gamma=0.01	epoch_size=500
+kfold train accuracy: 0.350371687935731
+kfold test accuracy: 0.5457901396009956
+kfold precision score: 0.19606296079856542
+kfold recall score: 0.3401676316033219
+kfold f1 score: 0.23639041744758466
+gamma=0.01	epoch_size=1000
+kfold train accuracy: 0.5885413402291764
+kfold test accuracy: 0.49984568527481976
+kfold precision score: 0.2535163638225986
+kfold recall score: 0.6677322291519294
+kfold f1 score: 0.3630349306123874
+gamma=0.01	epoch_size=2000
+kfold train accuracy: 0.8716997091803368
+kfold test accuracy: 0.6003732654261188
+kfold precision score: 0.3556828742420793
+kfold recall score: 0.9371083295160167
+kfold f1 score: 0.5100759483035464
+gamma=0.01	epoch_size=5000
+kfold train accuracy: 0.9005904286117472
+kfold test accuracy: 0.885453805665534
+kfold precision score: 0.756992215941055
+kfold recall score: 0.6688613657634276
+kfold f1 score: 0.7097518614355496
+gamma=0.001	epoch_size=100
+kfold train accuracy: 0.4726584784764524
+kfold test accuracy: 0.5380048781093596
+kfold precision score: 0.3120032050504551
+kfold recall score: 0.5441889297000622
+kfold f1 score: 0.3499953594633049
+gamma=0.001	epoch_size=500
+kfold train accuracy: 0.23625664434896804
+kfold test accuracy: 0.23935210306005877
+kfold precision score: 0.17775086794063766
+kfold recall score: 0.7215639294964542
+kfold f1 score: 0.2847865877990435
+gamma=0.001	epoch_size=1000
+kfold train accuracy: 0.21891997523963105
+kfold test accuracy: 0.2106484103119121
+kfold precision score: 0.1998912808866084
+kfold recall score: 0.9151920066873513
+kfold f1 score: 0.3277041182317847
+gamma=0.001	epoch_size=2000
+kfold train accuracy: 0.22519988518609974
+kfold test accuracy: 0.21073688630414522
+kfold precision score: 0.21073688630414522
+kfold recall score: 1.0
+kfold f1 score: 0.3478038825905544
+gamma=0.001	epoch_size=5000
+kfold train accuracy: 0.8877426943671726
+kfold test accuracy: 0.8877979109769978
+kfold precision score: 0.7573771501837683
+kfold recall score: 0.6854047928564075
+kfold f1 score: 0.7191701627048286
+
+NN:
+parameters:
+learning_rate=0.01	epoch_size=100
+kfold train accuracy: 0.8856088042259216
+kfold test accuracy: 0.8835964560508728
+kfold precision score: 0.7581689059975714
+kfold recall score: 0.6572891964172755
+kfold f1 score: 0.7027496837167961
+learning_rate=0.01	epoch_size=500
+kfold train accuracy: 0.8740768313407898
+kfold test accuracy: 0.8709035038948059
+kfold precision score: 0.8488700202484234
+kfold recall score: 0.4734474887611181
+kfold f1 score: 0.6000542919941189
+learning_rate=0.01	epoch_size=1000
+kfold train accuracy: 0.8637391686439514
+kfold test accuracy: 0.8629860401153564
+kfold precision score: 0.8053114832781081
+kfold recall score: 0.5442949876634221
+kfold f1 score: 0.6062993938859195
+learning_rate=0.01	epoch_size=2000
+kfold train accuracy: 0.872440505027771
+kfold test accuracy: 0.8706822037696839
+kfold precision score: 0.8478193285996751
+kfold recall score: 0.47739343627375463
+kfold f1 score: 0.5965916579598243
+learning_rate=0.01	epoch_size=5000
+kfold train accuracy: 0.7624066531658172
+kfold test accuracy: 0.7606871366500855
+kfold precision score: 0.6831856119840742
+kfold recall score: 0.6572168420275905
+kfold f1 score: 0.5950626544431326
+learning_rate=0.001	epoch_size=100
+kfold train accuracy: 0.8352796196937561
+kfold test accuracy: 0.8313637256622315
+kfold precision score: 0.5881011321804637
+kfold recall score: 0.6571006094303244
+kfold f1 score: 0.6200638537586485
+learning_rate=0.001	epoch_size=500
+kfold train accuracy: 0.8755029439926147
+kfold test accuracy: 0.8717444896697998
+kfold precision score: 0.8306806516864527
+kfold recall score: 0.5077624445383554
+kfold f1 score: 0.61939428295306
+learning_rate=0.001	epoch_size=1000
+kfold train accuracy: 0.8118947267532348
+kfold test accuracy: 0.8051828026771546
+kfold precision score: 0.5595319799169034
+kfold recall score: 0.808749991415714
+kfold f1 score: 0.6392117450422939
+learning_rate=0.001	epoch_size=2000
+kfold train accuracy: 0.8502495408058166
+kfold test accuracy: 0.8502513289451599
+kfold precision score: 0.7293270639118324
+kfold recall score: 0.6185708631488263
+kfold f1 score: 0.6192593318468752
+learning_rate=0.001	epoch_size=5000
+kfold train accuracy: 0.8065433979034424
+kfold test accuracy: 0.8039884924888611
+kfold precision score: 0.6147028150557744
+kfold recall score: 0.7380425977250878
+kfold f1 score: 0.6144561106913959
+
+LR:
+parameters:
+learning_rate=0.01	epoch_size=100
+kfold train accuracy: 0.8291760325431824
+kfold test accuracy: 0.8273414731025696
+kfold precision score: 0.47433700052444755
+kfold recall score: 0.5530152438714404
+kfold f1 score: 0.5083868229201818
+learning_rate=0.01	epoch_size=500
+kfold train accuracy: 0.8668015599250793
+kfold test accuracy: 0.8665695548057556
+kfold precision score: 0.6369685311523716
+kfold recall score: 0.6487176555640837
+kfold f1 score: 0.6425428183823196
+learning_rate=0.01	epoch_size=1000
+kfold train accuracy: 0.8785104632377625
+kfold test accuracy: 0.8774491429328919
+kfold precision score: 0.6940340316051936
+kfold recall score: 0.6673876158154132
+kfold f1 score: 0.6802751259955798
+learning_rate=0.01	epoch_size=2000
+kfold train accuracy: 0.8855755925178528
+kfold test accuracy: 0.884967565536499
+kfold precision score: 0.7321819236203527
+kfold recall score: 0.6833130179101511
+kfold f1 score: 0.7068112600159748
+learning_rate=0.01	epoch_size=5000
+kfold train accuracy: 0.8906726956367492
+kfold test accuracy: 0.8898324251174927
+kfold precision score: 0.7518757377710698
+kfold recall score: 0.69181362473688
+kfold f1 score: 0.7203676188301953
+learning_rate=0.001	epoch_size=100
+kfold train accuracy: 0.7892619490623474
+kfold test accuracy: 0.789263105392456
+kfold precision score: 0.14182770856378993
+kfold recall score: 0.2009821228186628
+kfold f1 score: 0.16362807234567983
+learning_rate=0.001	epoch_size=500
+kfold train accuracy: 0.8018884897232056
+kfold test accuracy: 0.801735007762909
+kfold precision score: 0.38038357775958087
+kfold recall score: 0.4270556298386685
+kfold f1 score: 0.3991004137664455
+learning_rate=0.001	epoch_size=1000
+kfold train accuracy: 0.8282251834869385
+kfold test accuracy: 0.8267222881317139
+kfold precision score: 0.4787696799293231
+kfold recall score: 0.5441101663816454
+kfold f1 score: 0.5078544065737123
+learning_rate=0.001	epoch_size=2000
+kfold train accuracy: 0.847728967666626
+kfold test accuracy: 0.8463139533996582
+kfold precision score: 0.5498592688676618
+kfold recall score: 0.6059832255391158
+kfold f1 score: 0.5758721816736115
+learning_rate=0.001	epoch_size=5000
+kfold train accuracy: 0.866790497303009
+kfold test accuracy: 0.8666580080986023
+kfold precision score: 0.6370991434325165
+kfold recall score: 0.6487176555640837
+kfold f1 score: 0.6426079552127291

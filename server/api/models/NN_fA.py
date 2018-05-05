@@ -13,6 +13,8 @@ import os
 import sys
 import tensorflow as tf
 import numpy as np
+from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, dir_path + '/../../utils')
@@ -24,13 +26,11 @@ dd = DataDetails()
 
 
 def multilayer_perceptron(dataset, labels, train_index, test_index,
-    learning_rate=0.01,training_epochs=1000, display_step=20):
+    learning_rate, training_epochs, threshold, display_step=10):
 
     # Network Parameters
     n_hidden_1 = 256  # 1st layer number of neurons
     n_hidden_2 = 256  # 2nd layer number of neurons
-    n_hidden_3 = 256  # 3rd layer number of neurons
-    n_hidden_4 = 256  # 3rd layer number of neurons
 
     # tf Graph input
     X = tf.placeholder("float", [None, dd.feature_size])
@@ -40,15 +40,11 @@ def multilayer_perceptron(dataset, labels, train_index, test_index,
     weights = {
         'h1': tf.Variable(tf.random_normal([dd.feature_size, n_hidden_1])),
         'h2': tf.Variable(tf.random_normal([n_hidden_1, n_hidden_2])),
-        'h3': tf.Variable(tf.random_normal([n_hidden_2, n_hidden_3])),
-        'h4': tf.Variable(tf.random_normal([n_hidden_3, n_hidden_4])),
-        'out': tf.Variable(tf.random_normal([n_hidden_4, dd.classification]))
+        'out': tf.Variable(tf.random_normal([n_hidden_2, dd.classification]))
     }
     biases = {
         'b1': tf.Variable(tf.random_normal([n_hidden_1])),
         'b2': tf.Variable(tf.random_normal([n_hidden_2])),
-        'b3': tf.Variable(tf.random_normal([n_hidden_3])),
-        'b4': tf.Variable(tf.random_normal([n_hidden_4])),
         'out': tf.Variable(tf.random_normal([dd.classification]))
     }
 
@@ -58,12 +54,8 @@ def multilayer_perceptron(dataset, labels, train_index, test_index,
         layer_1 = tf.add(tf.matmul(x, weights['h1']), biases['b1'])
         # Hidden fully connected layer with 256 neurons
         layer_2 = tf.add(tf.matmul(layer_1, weights['h2']), biases['b2'])
-        # Hidden fully connected layer with 256 neurons
-        layer_3 = tf.add(tf.matmul(layer_2, weights['h3']), biases['b3'])
-        # Hidden fully connected layer with 256 neurons
-        layer_4 = tf.add(tf.matmul(layer_3, weights['h4']), biases['b4'])
         # Output fully connected layer with a neuron for each class
-        out_layer = tf.matmul(layer_4, weights['out']) + biases['out']
+        out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
         return out_layer
 
     # Construct model
@@ -91,23 +83,36 @@ def multilayer_perceptron(dataset, labels, train_index, test_index,
 
         data_train, data_test = dataset[train_index], dataset[test_index]
         label_train, label_test = labels[train_index], labels[test_index]
-        
+        train_accuracy = -1
         #Training cycle
         for epoch in range(1, training_epochs+1):
             # Run optimization op (backprop)
             sess.run(train_op, feed_dict={X: data_train, Y: label_train})
             if epoch % display_step == 0 or epoch == 1:
                 # Calculate batch loss and accuracy
-                loss, acc = sess.run([loss_op, accuracy], feed_dict={X: data_train,
+                loss, train_accuracy = sess.run([loss_op, accuracy], feed_dict={X: data_train,
                                                                     Y: label_train})
                 print("Step " + str(epoch) + ", Loss= " +
                     "{:.4f}".format(loss) + ", Training Accuracy= " +
-                    "{:.3f}".format(acc))
+                    "{:.3f}".format(train_accuracy))
 
         print("Optimization Finished!")
 
-        # Calculate accuracy for MNIST test images
-        accu_value = sess.run(accuracy, feed_dict={X: data_test, Y: label_test})
+        test_accuracy = sess.run(accuracy, feed_dict={X: data_test, Y: label_test})
 
-        print("Accuracy:", accu_value, "\n")
-        return accu_value
+        y_true = np.argmax(label_test, 1)
+        y_pred = sess.run(prediction, feed_dict={X: data_test})
+        y_pred = np.array(
+            [1 if y[1] >= threshold else 0 for y in list(y_pred)])
+
+        precision = precision_score(y_true, y_pred)
+        recall = recall_score(y_true, y_pred)
+        f1 = f1_score(y_true, y_pred)
+
+        print("Training Accuracy: ", train_accuracy)
+        print("Testing Accuracy:", test_accuracy)
+        print("Precision Score:", precision)
+        print("Recall Score:", recall)
+        print("F1 Score:", f1)
+
+        return train_accuracy, test_accuracy, precision, recall, f1

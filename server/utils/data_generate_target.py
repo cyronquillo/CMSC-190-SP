@@ -60,6 +60,6 @@ data_path = '../data/debates/preprocessed.txt'
 target_output_score_path = '../data/debates/ground_sentence_score.txt'
 target_output_class_path = '../data/debates/ground_sentence_class.txt'
 # threshold = 0.40
-threshold = 0.50
-# threshold = 0.30
+# threshold = 0.50
+threshold = 0.30
 adjust_threshold(threshold, target_output_score_path, target_output_class_path)

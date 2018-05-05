@@ -10,8 +10,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, dir_path + '/../../utils')
 
 from training_operation import get_data_and_label, numpy_array
-
-save_path = 'SVM.sav'
+from training_execution import train_main_model, use_main_model
 
 
 
@@ -21,34 +20,27 @@ dataset = numpy_array(dataset)
 
 labels = np.array([1 if y[1] == 1 else 0 for y in list(labels)])
 
+
+learning_rate = 0.01
+training_epochs = 5000   
 def train():
-
-    
-
-    model = svm.SVC(kernel='rbf', gamma='auto', verbose=2,
-                    max_iter=-1, probability=True)
-
-    model.fit(dataset, labels)
-
-    pickle.dump(model, open(save_path, 'wb'))
-
-    y_pred = model.predict(dataset)
-    print("Train Accuracy:", sk.metrics.accuracy_score(labels, y_pred))
-
-
-def vectorize_input(sentence):
-    
+    train_main_model(
+        {
+            'learning_rate': learning_rate,
+            'training_epochs': training_epochs
+        }
+    )
 
     
 def classify(vector):
-    model = pickle.load(open(save_path, 'rb'))
-    # y_pred = model.predict(dataset)
-    # print("Train Accuracy:", accuracy_score(labels, y_pred))
-    # print("Train F1 Score:", f1_score(labels, y_pred))
-    # print("Train Precision:", precision_score(labels, y_pred))
-    # print("Train Recall:", recall_score(labels, y_pred))
-    prob_score = model.predict_proba(vector)
-    y_pred = model.predict(vector)
-    return prob_score
+    prob_score = use_main_model(
+        {
+            'learning_rate': learning_rate,
+            'training_epochs': training_epochs,
+            'input': vector
+        }
+    )
+    print(prob_score)
+    # return prob_score
 
-classify()
+classify([0])
