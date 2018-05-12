@@ -1,0 +1,29 @@
+{
+    "name": "transcript_verifier",
+    "version": "1.0.0",
+    "description": "Transcript Relevance and Certainty Verification Application",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon backend/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cyronquillo/CMSC-190-SP.git"
+    },
+    "author": "Cyrez B. Ronquillo",
+    "dependencies": {
+        "body-parser": "^1.17.1",
+        "bower": "^1.8.0",
+        "compression": "^1.6.2",
+        "express": "^4.15.2",
+        "gulp": "^3.9.1",
+        "method-override": "^2.3.7",
+        "minimatch": "^3.0.3",
+        "nodemon": "^1.11.0",
+        "path": "^0.12.7",
+        "prettyjson": "^1.2.1",
+        "redis": "^2.6.5",
+        "winston": "^2.3.1",
+        "python-shell": "^0.5.0"
+    }
+}

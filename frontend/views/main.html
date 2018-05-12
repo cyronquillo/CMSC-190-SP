@@ -1,0 +1,58 @@
+<div ng-controller="main-controller" class="ui segment" id="cont">
+    <div class="ui">
+        <div id="input">
+            <div class="field">
+                <textarea id="lined" rows="10" cols="200" placeholder="Enter transcript here" ng-model="sentences"></textarea>
+            </div>
+        </div>
+        <button class="ui primary button" id="get-data" ng-click="submit_sentences();"> Submit Transcript </button>
+        <div id="table-div">
+            <table class="ui celled inverted gray table" id="data-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="header">Index</span>
+                        </th>
+                        <th>
+                            <span class="header">Sentence</span>
+                        </th>
+                        <th>
+                            <span class="header">Sentence Certainty Score</span>
+                        </th>
+                        <th>
+                            <span class="header">Sentence Relevance Score</span>
+                        </th>
+                        <th>
+                            <span class="header">Edit</span>
+                        </th>
+                        <th>
+                            <span class="header">Delete</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sentence in list track by $index">
+                        <td>{{$index + 1}}</td>
+
+                        <td>
+                            {{sentence.sentence}}
+                        </td>
+                        <td>
+                            {{sentence.sentence_certainty}}
+                        </td>
+                        <td>
+                            {{sentence.sentence_relevance}}
+                        </td>
+                        <td>
+                            <button class="ui primary button" id="edit" ng-click="modify_sentence($index);">Edit</button>
+                            
+                        </td>
+                        <td>
+                            <button class="ui primary button" id="delete" ng-click="remove_sentence($index);">Delete</button>                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
