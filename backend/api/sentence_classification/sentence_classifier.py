@@ -43,7 +43,7 @@ def classify(vectors):
     
     dic_prob_scores = {}
     for i in range(len(prob_score)):
-        dic_prob_scores[str(i)] = str(prob_score[i][1])
+        dic_prob_scores[str(i)] = str(round(prob_score[i][1], 4))
     print(json.dumps(dic_prob_scores))
 
 

@@ -1,0 +1,59 @@
+#nprogress .bar {
+    background:#29d;
+    height:5px;
+}
+
+#nprogress .spinner-icon {
+    border-top-color: #29d;
+    border-left-color: #29d;
+}
+
+#main-div {
+    background-color: gray;
+}
+
+#textarea {
+    style="word-wrap: break-word; 
+    flex: inherit;
+    padding:10px;
+    border-radius:15px;
+}
+
+th + th {
+    width: 100%;
+}
+
+.hazard {
+    color: red;
+}
+
+.get-data {
+    position: relative;
+    top: -150px;
+    left: 20px;
+}
+
+#gcs-div {
+    position: relative;
+    left:-100px;
+    top: -100px;
+}
+
+#grs-div {
+    position: relative;
+    top: -65px;
+    left: -287px;
+}
+
+#gts-div {
+    position: relative;
+    left: -480px;
+    top: -28px;
+}
+
+.statistic {
+    position:absolute;
+    top:220px;
+    left:1300px;
+}
+

@@ -1,54 +1,92 @@
-<div ng-controller="main-controller" class="ui segment" id="cont">
+<div ng-controller="main-controller" class="ui segment" id="main-div">
     <div class="ui">
-        <div id="input">
-            <div class="field">
-                <textarea id="lined" rows="10" cols="200" placeholder="Enter transcript here" ng-model="sentences"></textarea>
+        <div class="ui block header">
+            <i class="settings icon"></i>
+            <div class="content">
+                 Verification of Transcript Relevance and Certainty through Sentence Classification and Semantic Similarity Analysis
+                <div class="sub header">
+                    CMSC 190-2 Special Problem
+                </div>
             </div>
         </div>
-        <button class="ui primary button" id="get-data" ng-click="submit_sentences();"> Submit Transcript </button>
+        <div id="input">
+            <div class="field">
+                <textarea id="textarea" rows="10" cols="80" placeholder="Enter transcript here..." ng-model="sentences"></textarea>
+                <span class ="get-data" ng-if="button_status=='disabled'"  data-tooltip="Choose a mode first before submitting." data-position="right center" data-inverted=""> 
+                    <button class="ui disabled primary button" > 
+                        Submit Transcript 
+                    </button>
+                </span>
+                <button class="ui primary button get-data" ng-if="button_status=='enabled'" ng-click="submit_sentences();">
+                    Submit Transcript </button>
+                <span ng-repeat="slider in sliders track by $index">
+                    <div class="ui toggle checkbox" id="{{slider.id}}-div" >
+                        <input id="{{slider.id}}" type="checkbox" ng-click="activate(slider.id)">
+                        <label>{{slider.label}}</label>
+                    </div>
+                </span>
+                <!-- <div></div> -->
+            </div>
+        </div>
+        <!-- submitted_mode == 'gts' && transcript_score != undefined && !isNaN(transcript_score) -->
+        <div class="ui statistic" ng-if=" submitted_mode == 'gts' && transcript_score != undefined">
+            <div class="label">
+                Transcript Score
+            </div>
+            <div class="value">
+                {{transcript_score}}
+            </div>
+        </div>
+        <div class="ui horizontal divider">Transcript Table</div>
         <div id="table-div">
-            <table class="ui celled inverted gray table" id="data-table">
+            <table class="ui celled striped selectable inverted table" id="data-table">
                 <thead>
                     <tr>
-                        <th>
+                        <th class="collapsing">
                             <span class="header">Index</span>
                         </th>
-                        <th>
+                        <th class ="center aligned">
                             <span class="header">Sentence</span>
                         </th>
-                        <th>
+                        <th class="collapsing center aligned">
                             <span class="header">Sentence Certainty Score</span>
                         </th>
-                        <th>
+                        <th class="collapsing">
                             <span class="header">Sentence Relevance Score</span>
                         </th>
-                        <th>
-                            <span class="header">Edit</span>
-                        </th>
-                        <th>
-                            <span class="header">Delete</span>
+                        <th class="collapsing center aligned" colspan="2">
+                            <span class="header">Modify Sentences</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="sentence in list track by $index">
-                        <td>{{$index + 1}}</td>
-
+                        <td class ="collapsing center aligned" >{{$index + 1}}</td>
                         <td>
                             {{sentence.sentence}}
                         </td>
-                        <td>
+                        <td class="center aligned" ng-if="sentence.sentence_certainty != 0">
                             {{sentence.sentence_certainty}}
                         </td>
-                        <td>
+                        <td class="center aligned" ng-if="sentence.sentence_certainty == '0'">
+                            <i class="exclamation triangle icon hazard"></i>
+                            Insufficient Data
+                            <i class="exclamation triangle icon hazard" ></i>
+                        </td>
+                        <td class="center aligned">
                             {{sentence.sentence_relevance}}
                         </td>
-                        <td>
-                            <button class="ui primary button" id="edit" ng-click="modify_sentence($index);">Edit</button>
-                            
+                        <td class="center aligned" ng-if="!is_done">
+                            <button class="ui inverted loading yellow button" id="edit" >Edit</button>
                         </td>
-                        <td>
-                            <button class="ui primary button" id="delete" ng-click="remove_sentence($index);">Delete</button>                            
+                        <td class="center aligned" ng-if="is_done">
+                            <button class="ui inverted yellow button" id="edit" ng-click="modify_sentence($index);">Edit</button>
+                        </td>
+                        <td class="center aligned" ng-if="!is_done">
+                            <button class="ui inverted loading red button" >Delete</button>
+                        </td>
+                        <td class="center aligned" ng-if="is_done">
+                            <button class="ui inverted red button" id="delete" ng-click="remove_sentence($index);">Delete</button>
                         </td>
                     </tr>
                 </tbody>

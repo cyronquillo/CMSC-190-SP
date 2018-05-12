@@ -118,9 +118,9 @@ def main(transcript):
                         max_sentence = title
                     break
         if classification == CONS_RELIABLE:
-            results[str(i)] = str(max_similarity)
+            results[str(i)] = str(round(max_similarity, 4))
         elif classification == CONS_SATIRIC:
-            results[str(i)] = str(-max_similarity)
+            results[str(i)] = str(-round(max_similarity, 4))
         else:
             results[str(i)] = "0"
     print(json.dumps(results))
