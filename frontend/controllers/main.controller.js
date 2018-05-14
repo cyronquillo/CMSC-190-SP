@@ -13,14 +13,15 @@ function mainCtrl() {
         $scope.sentences = undefined
         $scope.transcript_score = undefined
         $scope.button_status = "disabled";
-        $scope.is_done = false;
         $scope.mode = undefined;
         $scope.submitted_mode = undefined;
         $scope.list = [
             {
                 sentence:"-",
                 sentence_certainty:"-",
-                sentence_relevance:"-"
+                sentence_relevance:"-",
+                editable: false,
+                is_done: false
             }
         ]
 
@@ -43,7 +44,6 @@ function mainCtrl() {
 
         $scope.submit_sentences = function() {
             if($scope.sentences !== undefined && $scope.sentences !== ""){
-                $scope.is_done = false
                 $scope.submitted_mode = $scope.mode;
                 NProgress.start();
                 $scope.transcript_score = undefined
@@ -68,14 +68,14 @@ function mainCtrl() {
                     {
                         sentence: obj.sentences[i],
                         sentence_certainty: "-",
-                        sentence_relevance: "-"
+                        sentence_relevance: "-",
+                        editable: false,
+                        is_done: false
                     }
                 )
             }
             if ($scope.submitted_mode == "gts" || $scope.submitted_mode == "gcs")
                 $scope.get_sentence_certainty_score();
-            else
-                console.log("wtf imposible")
             if ($scope.submitted_mode == "gts" || $scope.submitted_mode == "grs")
                 $scope.get_sentence_relevance_score();
         }
@@ -95,14 +95,17 @@ function mainCtrl() {
 
         $scope.store_sentence_relevance_score = function(scores) {
             var obj = {scores}
-            console.log("storing");
+            console.log(obj)
+            
             for(var i = 0; i < Object.keys(obj.scores).length; i++){
-                $scope.list[i].sentence_relevance = obj.scores[i]
+                $scope.list[i].sentence_relevance = obj.scores[i];
+                if($scope.submitted_mode != "gts"){
+                    $scope.list[i].is_done = true;
+                }
             }
             if($scope.submitted_mode == "gts") $scope.compute_transcript_score();
             else {
                 NProgress.done()
-                $scope.is_done = true;
             }
         }
 
@@ -119,17 +122,21 @@ function mainCtrl() {
                 })
             }
             
-            $scope.store_sentence_certainty_score = function (scores) {
-                var obj = { scores }
-                console.log("storing");
-                for (var i = 0; i < Object.keys(obj.scores).length; i++) {
-                    $scope.list[i].sentence_certainty = obj.scores[i]
+        $scope.store_sentence_certainty_score = function (scores) {
+            var obj = { scores }
+            console.log(obj)
+            console.log("storing");
+            console.log(obj.scores[0])
+            for (var i = 0; i < Object.keys(obj.scores).length; i++) {
+                $scope.list[i].sentence_certainty = obj.scores[i];
+                if ($scope.submitted_mode != "gts") {
+                    $scope.list[i].is_done = true;
                 }
-                if ($scope.submitted_mode == "gts") $scope.compute_transcript_score();
-                else {
-                    NProgress.done()
-                    $scope.is_done = true;
-                }
+            }
+            if ($scope.submitted_mode == "gts") $scope.compute_transcript_score();
+            else {
+                NProgress.done()
+            }
         }
 
         $scope.compute_transcript_score = function () {
@@ -137,26 +144,96 @@ function mainCtrl() {
             for(var i = 0; i < $scope.list.length; i++){
                 $scope.transcript_score += 
                     ($scope.list[i].sentence_certainty * $scope.list[i].sentence_relevance)
+                $scope.list[i].is_done = true;
             }
             $scope.transcript_score /= $scope.list.length
             console.log($scope.transcript_score);
             
             if (isNaN($scope.transcript_score)){
                 $scope.transcript_score = undefined
-                NProgress.set(0.7);
+                if($scope.submitted_mode == "gts") NProgress.set(0.5);
             }
             if (!isNaN($scope.transcript_score)) {
+                $scope.transcript_score = ($scope.transcript_score).toFixed(4);
                 NProgress.done();
-                $scope.is_done = true;
             }
         }
 
         $scope.modify_sentence = function(index) {
-            console.log("Hello ");
+            var change = document.getElementById(index).isContentEditable;
+            var elem = document.getElementById(index);
+            var button1 = document.getElementById("edit" + index);
+            var button2 = document.getElementById("delete" + index);
+            if(change){
+                // to save
+                button1.innerText = "Edit"
+                button2.innerText = "Delete"
+                $scope.list[index].sentence = elem.innerText;
+
+                $scope.update_scores(index);
+            } else{
+                // to start editing
+                button1.innerText = "Save"
+                button2.innerText = "Cancel"
+            }
+            elem.contentEditable = !change;
+            $scope.list[index].editable = !change;
+            elem.focus();
+            console.log($scope.list)
         }
 
-        $scope.remove_sentence = function(index) {
-            $scope.list.splice(index, 1);
+        $scope.update_scores = function (index) {
+            var srs = document.getElementById("srs" + index)
+            var scs = document.getElementById("scs" + index)
+            if (($scope.submitted_mode == "gts" || $scope.submitted_mode == "grs") && srs.classList.length == 4){
+                $scope.list[index].is_done = false;
+                MainService
+                .get_sentence_relevance_score(
+                    { sentences: $scope.list[index].sentence }
+                ).then(function (res) {
+                    console.log(res);
+                    var obj = { res }
+                    $scope.list[index].sentence_relevance = obj.res[0];
+                    $scope.compute_transcript_score();
+                    $scope.list[index].is_done = true;
+                }, function (err) {
+                    console.log(err);
+                })
+            }
+            if (($scope.submitted_mode == "gts" || $scope.submitted_mode == "gcs") && scs.classList.length == 4){
+                $scope.list[index].is_done = false;
+                MainService
+                    .get_sentence_certainty_score(
+                        { sentences: $scope.list[index].sentence }
+                    ).then(function (res) {
+                        var obj = { res }
+                        console.log(res);
+                        $scope.list[index].sentence_certainty = obj.res[0];
+                        $scope.compute_transcript_score()
+                        $scope.list[index].is_done = true;
+                    }, function (err) {
+                        console.log(err);
+                    })
+            }
+        }
+
+
+        $scope.delete_function = function(index) {
+            var button1 = document.getElementById("edit" + index);
+            var button2 = document.getElementById("delete"+index);
+            if(button2.innerText == "Delete"){
+                $scope.list.splice(index, 1);
+                if ($scope.submitted_mode == 'gts')
+                    $scope.compute_transcript_score()
+            } else{
+                // cancel
+                var elem = document.getElementById(index);
+                elem.innerText = $scope.list[index].sentence;
+                button1.innerText = "Edit";
+                button2.innerText = "Delete";
+                elem.contentEditable = false;
+                $scope.list[index].editable = false;
+            }
         }
 
         $scope.activate = function(id) {
@@ -174,6 +251,11 @@ function mainCtrl() {
                 $scope.mode = "waley"
             }
             console.log($scope.mode)
+        }
+        
+        $scope.toggle = function(index) {
+            var button = document.getElementById(index);
+            button.classList.toggle("active");
         }
     }
 

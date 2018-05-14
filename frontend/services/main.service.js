@@ -74,6 +74,7 @@
                 header: headers
             })
                 .then(function (res) {
+                    console.log(res.data)
                     deferred.resolve(res.data);
                 }, function (err) {
                     console.log(err);

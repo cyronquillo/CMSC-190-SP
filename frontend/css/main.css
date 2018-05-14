@@ -17,6 +17,8 @@
     flex: inherit;
     padding:10px;
     border-radius:15px;
+    background-color: #d4d4d5;
+    border-color: #d4d4d5;
 }
 
 th + th {
@@ -57,3 +59,7 @@ th + th {
     left:1300px;
 }
 
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before {
+  /* background-color: red !important; */
+}

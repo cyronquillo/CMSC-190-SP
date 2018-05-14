@@ -13,11 +13,11 @@
             <div class="field">
                 <textarea id="textarea" rows="10" cols="80" placeholder="Enter transcript here..." ng-model="sentences"></textarea>
                 <span class ="get-data" ng-if="button_status=='disabled'"  data-tooltip="Choose a mode first before submitting." data-position="right center" data-inverted=""> 
-                    <button class="ui disabled primary button" > 
+                    <button class="ui disabled green button" > 
                         Submit Transcript 
                     </button>
                 </span>
-                <button class="ui primary button get-data" ng-if="button_status=='enabled'" ng-click="submit_sentences();">
+                <button class="ui green button get-data" ng-if="button_status=='enabled'" ng-click="submit_sentences();">
                     Submit Transcript </button>
                 <span ng-repeat="slider in sliders track by $index">
                     <div class="ui toggle checkbox" id="{{slider.id}}-div" >
@@ -62,35 +62,43 @@
                 <tbody>
                     <tr ng-repeat="sentence in list track by $index">
                         <td class ="collapsing center aligned" >{{$index + 1}}</td>
-                        <td>
+                        <td id="{{$index}}">
                             {{sentence.sentence}}
                         </td>
-                        <td class="center aligned" ng-if="sentence.sentence_certainty != 0">
+                        <td class="center aligned" ng-if="sentence.sentence_certainty != 0 && (!sentence.editable || (sentence.editable && !(submitted_mode =='gts' || submitted_mode == 'gcs')))">
                             {{sentence.sentence_certainty}}
                         </td>
-                        <td class="center aligned" ng-if="sentence.sentence_certainty == '0'">
+                        <td class="center aligned" ng-if="sentence.sentence_certainty == 0 && (!sentence.editable || (sentence.editable && !(submitted_mode =='gts' || submitted_mode == 'gcs')))">
                             <i class="exclamation triangle icon hazard"></i>
                             Insufficient Data
                             <i class="exclamation triangle icon hazard" ></i>
                         </td>
-                        <td class="center aligned">
+                        <td class="center aligned" ng-if="sentence.editable && (submitted_mode =='gts' || submitted_mode == 'gcs')">
+                            <button class="ui toggle button" id="scs{{$index}}" ng-click="toggle('scs' + $index)">Modify</button>
+                        </td>
+                        <td class="center aligned" ng-if="(!sentence.editable || (sentence.editable && !(submitted_mode =='gts' || submitted_mode == 'grs')))">
                             {{sentence.sentence_relevance}}
                         </td>
-                        <td class="center aligned" ng-if="!is_done">
+                        <td class="center aligned" ng-if="sentence.editable && (submitted_mode =='gts' || submitted_mode == 'grs')">
+                            <button class="ui toggle button" id="srs{{$index}}" ng-click="toggle('srs' + $index)">Modify</button>
+                        </td>
+                        <td class="center aligned" ng-if="!sentence.is_done">
                             <button class="ui inverted loading yellow button" id="edit" >Edit</button>
                         </td>
-                        <td class="center aligned" ng-if="is_done">
-                            <button class="ui inverted yellow button" id="edit" ng-click="modify_sentence($index);">Edit</button>
+                        <td class="center aligned" ng-if="sentence.is_done">
+                            <button class="ui inverted yellow button" id="edit{{$index}}" ng-click="modify_sentence($index);">Edit</button>
                         </td>
-                        <td class="center aligned" ng-if="!is_done">
+                        <td class="center aligned" ng-if="!sentence.is_done">
                             <button class="ui inverted loading red button" >Delete</button>
                         </td>
-                        <td class="center aligned" ng-if="is_done">
-                            <button class="ui inverted red button" id="delete" ng-click="remove_sentence($index);">Delete</button>
+                        <td class="center aligned" ng-if="sentence.is_done">
+                            <button class="ui inverted red button" id="delete{{$index}}" ng-click="delete_function($index);">Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <!-- MODAL -->
+        <div
     </div>
 </div>

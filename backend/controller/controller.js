@@ -37,6 +37,7 @@ exports.parse_sentences = (req, res, next) => {
 }
 
 exports.get_sentence_relevance_score = (req, res, next) => {
+    req.setTimeout(0);
     var payload = {
         args: [req.params.sentences]
     }
@@ -46,6 +47,7 @@ exports.get_sentence_relevance_score = (req, res, next) => {
             console.log(err)
             res.status(404).send(err);
         } else {
+            console.log(data.toString())
             res.send(data.toString())
         }
     })
@@ -53,16 +55,17 @@ exports.get_sentence_relevance_score = (req, res, next) => {
 
 
 exports.get_sentence_certainty_score = (req, res, next) => {
+    req.setTimeout(0);
     var payload = {
         args: [req.params.sentences]
     }
-
     PythonShell.run('./api/semantic_similarity_analysis/sentence_scorer.py', payload, function (err, data) {
         if (err) {
             console.log(err)
             res.status(404).send(err);
         } else {
-            res.send(data.toString())
+            console.log(data.toString())
+            res.status(200).send(data.toString())
         }
     })
 }

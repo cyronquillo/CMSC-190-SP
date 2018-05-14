@@ -176,7 +176,7 @@ def generate_test_cases():
         },
         {
             "sentence":
-                "Marcos camp looking at 290, 000 undervotes in pilot provinces for ballot recount.",
+                "Marcos camp looking at 290,000 undervotes in pilot provinces for ballot recount.",
             "type":
                 "reliable"
         },
