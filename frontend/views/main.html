@@ -29,12 +29,12 @@
             </div>
         </div>
         <!-- submitted_mode == 'gts' && transcript_score != undefined && !isNaN(transcript_score) -->
-        <div class="ui statistic" ng-if=" submitted_mode == 'gts' && transcript_score != undefined">
+        <div class="ui statistic  {{status}}" ng-if=" submitted_mode == 'gts' && transcript_score != undefined">
             <div class="label">
                 Transcript Score
             </div>
-            <div class="value">
-                {{transcript_score}}
+            <div class="outline value">
+                    {{transcript_score}}
             </div>
         </div>
         <div class="ui horizontal divider">Transcript Table</div>

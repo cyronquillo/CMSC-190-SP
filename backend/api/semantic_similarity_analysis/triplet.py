@@ -10,7 +10,7 @@ class TripletExtraction():
     def getSubject(self, subjects):
         subject_tokens = []
         for subject in subjects:
-            if "PRP" in subject[1] or "NN" in subject[1]:
+            if "NN" in subject[1]:
                 subject_tokens.append([subject[0].lower(), subject[1] , 1])
             
             else:

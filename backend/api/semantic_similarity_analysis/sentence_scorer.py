@@ -74,7 +74,6 @@ def main(transcript):
         '''
             comparison for satirical and reliable news
         '''
-
         for title in satirical_news:
             for subj in svo_inp['subject']:
                 if subj[2] == 0:

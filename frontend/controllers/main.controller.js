@@ -15,6 +15,7 @@ function mainCtrl() {
         $scope.button_status = "disabled";
         $scope.mode = undefined;
         $scope.submitted_mode = undefined;
+        $scope.status = "red";
         $scope.list = [
             {
                 sentence:"-",
@@ -144,7 +145,6 @@ function mainCtrl() {
             for(var i = 0; i < $scope.list.length; i++){
                 $scope.transcript_score += 
                     ($scope.list[i].sentence_certainty * $scope.list[i].sentence_relevance)
-                $scope.list[i].is_done = true;
             }
             $scope.transcript_score /= $scope.list.length
             console.log($scope.transcript_score);
@@ -154,8 +154,15 @@ function mainCtrl() {
                 if($scope.submitted_mode == "gts") NProgress.set(0.5);
             }
             if (!isNaN($scope.transcript_score)) {
-                $scope.transcript_score = ($scope.transcript_score).toFixed(4);
+                if ($scope.transcript_score == 0) $scope.status = "black"
+                if ($scope.transcript_score < 0) $scope.status = "red"
+                if ($scope.transcript_score > 0) $scope.status = "green"
+                $scope.transcript_score = (Math.abs($scope.transcript_score)).toFixed(4);
                 NProgress.done();
+                console.log("computed na");
+                for (var i = 0; i < $scope.list.length; i++) {
+                    $scope.list[i].is_done = true;
+                }
             }
         }
 
