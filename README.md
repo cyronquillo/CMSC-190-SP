@@ -1,6 +1,7 @@
 # CMSC-190-SP
 
 repository: https://github.com/cyronquillo/CMSC-190-SP
+
 Set-up:
 1. install python 3.5 and pip
 2. run 'pip install -r requirements.txt'
