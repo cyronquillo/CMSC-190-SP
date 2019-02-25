@@ -20,7 +20,10 @@ exports.get_score = (req, res, next) => {
 
 
 exports.parse_sentences = (req, res, next) => {
+    console.log("inside backend parse_sentences")
+    console.log("backend->controller: "+req.params.sentences)
     var payload = {
+        pythonPath:'python3.5',
         args:
         [
             req.params.sentences
@@ -39,6 +42,7 @@ exports.parse_sentences = (req, res, next) => {
 exports.get_sentence_relevance_score = (req, res, next) => {
     req.setTimeout(0);
     var payload = {
+        pythonPath:'python3.5',
         args: [req.params.sentences]
     }
 
@@ -57,8 +61,10 @@ exports.get_sentence_relevance_score = (req, res, next) => {
 exports.get_sentence_certainty_score = (req, res, next) => {
     req.setTimeout(0);
     var payload = {
+        pythonPath:'python3.5',
         args: [req.params.sentences]
     }
+    console.log(req.params.sentences)
     PythonShell.run('./api/semantic_similarity_analysis/sentence_scorer.py', payload, function (err, data) {
         if (err) {
             console.log(err)

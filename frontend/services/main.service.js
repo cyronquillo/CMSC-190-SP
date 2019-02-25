@@ -33,6 +33,7 @@
 
         const parse_sentences = (data) => {
             let deferred = $q.defer();
+            console.log("inside parse_sentences")
             $http({
                 method: 'GET',
                 data: $httpParamSerializer(data),

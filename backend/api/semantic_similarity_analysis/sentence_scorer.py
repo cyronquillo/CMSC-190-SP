@@ -1,7 +1,7 @@
 import json
 import sys
-from inflection import singularize
 from bllipparser import RerankingParser, Tree
+from inflection import singularize
 import sqlite3 as sql
 from nltk import sent_tokenize
 
@@ -13,7 +13,9 @@ from similarity_analysis import SemanticSimilarityAnalysis
 from nltk.tokenize import RegexpTokenizer
 sentence_tokenizer = RegexpTokenizer(r'\w+')
 
-conn = sql.connect('data/news/news.db')
+# conn = sql.connect('data/news/news.db')
+conn = sql.connect('../../data/news/news.db')
+
 c = conn.cursor()
 
 satiric_shits = [
@@ -34,16 +36,19 @@ def main(transcript):
     results = {}
     sentences = sent_tokenize(transcript)
 
+    print(sentences)
     '''
         Declaration of constants and functions
     '''
     
     CONS_SATIRIC = 0
     CONS_RELIABLE = 1
-    rrp = RerankingParser.fetch_and_load('WSJ-PTB3')
+    rrp = RerankingParser.fetch_and_load('WSJ-PTB3', verbose=True)
+    print("hello world")
     foo = TripletExtraction()
     bar = SemanticSimilarityAnalysis()
 
+    print("constants and functions successfully declared.")
 
 
     '''
@@ -55,6 +60,7 @@ def main(transcript):
     c.execute('SELECT title FROM satirical_news')
     satirical_news = [tup[0] for tup in c.fetchall()]
 
+    print("database tables are successfully fetched.")
 
     t = len(sentences)
     correct_classifications = 0
@@ -127,7 +133,9 @@ def main(transcript):
             results[str(i)] = str(round(-max_similarity, 4))
         else:
             results[str(i)] = "0"
-    print(json.dumps(results))
+    # print(json.dumps(results))
+    print(results)
 
-
-main(sys.argv[1])
+arg = 'This is a sample sentence.'
+# main(sys.argv[1])
+main(arg)
